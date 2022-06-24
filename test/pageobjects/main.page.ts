@@ -1,20 +1,26 @@
 import Page from './page';
 
+import { Element } from '../types'
+
 class MainPage extends Page {
-    get discountBlock() {
-        return $("//*[text()[contains(.,'Акционные предложения')]]/../ul");
+    get discountBlock(): Element {
+        return $("//rz-goods-sections/section[1]");
     }
 
-    get discountBlockElement() {
+    get discountBlockElement(): Element {
         return this.discountBlock.$('//rz-goods-section/ul/li[1]');
     }
 
-    get discountBlockElementTitle(){
-        return this.discountBlockElement.$('//*[@class="tile__title"]');
+    discountBlockElementTitle(): Promise<string>{
+        return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
     }
 
-    get discountBlockElementPrice(){
-        return this.discountBlockElement.$('//*[@class="tile__price-value"]');
+    discountBlockElementPrice(): Promise<string>{
+        return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+    }
+
+    async discountBlockElementClick(): Promise<void> {
+        await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
     }
   
     open () {

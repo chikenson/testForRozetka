@@ -1,13 +1,15 @@
+import { Element } from '../types'
+
 class Header {
-    get root() {
+    get root(): Element {
      return $('rz-header');
     }
  
-    get cartButton() {
+    get cartButton(): Element {
      return this.root.$('rz-cart > button');
     }
 
-    get cartButtonCounter(){
+    get cartButtonCounter(): Element{
         return this.cartButton.$('[class*="counter "]');
     }
  }

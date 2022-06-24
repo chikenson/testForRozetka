@@ -1,4 +1,8 @@
 {
+    "name": "rozetka-tests",
+    "author": "chickenson",
+    "version": "0.1.0",
+    "private": true,
     "dependencies": {
         "wdio": "^6.0.1"
     },

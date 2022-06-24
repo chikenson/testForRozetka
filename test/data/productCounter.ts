@@ -1,0 +1,1 @@
+export const productCounter: string = "1"
