@@ -1,23 +1,25 @@
 import MainPage from  '../../pageObjects/main.page';
 import ProductPage from '../../pageObjects/product.page';
 import CartPage from '../../pageObjects/cart.page';
+import Header from '../../pageObjects/header';
 
 describe('Events with cart.', () => {
     it('Adding product to the cart from product page.', async () => {
         await MainPage.open();
-        await browser.maximizeWindow()
-        await MainPage.discountBoxElement.isDisplayed()
-        await MainPage.discountBoxElement.click()
+        await browser.maximizeWindow();
 
-        await ProductPage.buyButton.click()      
+        const mainProductTitle: string = await MainPage.discountBlockElementTitle.getText();
+        const mainProductPrice: string = await MainPage.discountBlockElementPrice.getText();
 
-        await CartPage.open()
+        await MainPage.discountBlockElement.click();
 
-        expect(CartPage.counterInput).toHaveValueContaining("1")
-
-
+        await ProductPage.buyButton.click();   
         
+        await CartPage.open();
+
+        await expect(CartPage.counterInput).toHaveValueContaining("1");
+        await expect(CartPage.productTitle).toHaveTextContaining(mainProductTitle);
+        await expect(Header.cartButtonCounter).toHaveTextContaining("1");
+        await expect(CartPage.productPrice).toHaveTextContaining(mainProductPrice);
     });
 });
-
-

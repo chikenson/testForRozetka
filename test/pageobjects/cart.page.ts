@@ -7,13 +7,16 @@ class CartPage extends Page {
     }
 
    get counterInput() {
-    return $('//rz-cart-counter//input');
+    return $('[data-testid="cart-counter-input"]');
    }
 
-   get addedElement() {
-    return $('//rz-cart-product/div/div[1]')
+   get productTitle() {
+    return $('[data-testid="title"]')
    }
 
+   get productPrice(){
+      return $('[data-testid="cost"]')
+  }
 }
 
 export default new CartPage();
