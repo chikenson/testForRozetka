@@ -3,11 +3,11 @@ import Page from './page';
 import { Element } from '../types'
 
 class MainPage extends Page {
-    get discountBlock(): Element {
+    private get discountBlock(): Element {
         return $("//rz-goods-sections/section[1]");
     }
 
-    get discountBlockElement(): Element {
+    private get discountBlockElement(): Element {
         return this.discountBlock.$('//rz-goods-section/ul/li[1]');
     }
 

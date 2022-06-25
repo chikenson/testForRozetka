@@ -14,9 +14,14 @@ describe('Events with cart.', () => {
         
         await cartPage.open();
 
-        await expect(cartPage.counterInput).toHaveValueContaining(productCounter);
-        await expect(cartPage.productTitle).toHaveTextContaining(mainProductTitle);
-        await expect(header.cartButtonCounter).toHaveTextContaining(productCounter);
-        await expect(cartPage.productPrice).toHaveTextContaining(mainProductPrice);
+        const counterInputValue: string = await cartPage.counterInputValue();
+        const cartButtonCounterValue: string = await header.cartButtonCounterValue();
+        const cartProductTitleValue: string = await cartPage.productTitleValue();
+        const cartProductPriceValue: string = await cartPage.productPriceValue();
+        
+        await expect(counterInputValue).toEqual(productCounter);
+        await expect(cartButtonCounterValue).toEqual(productCounter);
+        await expect(cartProductTitleValue).toEqual(mainProductTitle);
+        await expect(cartProductPriceValue).toEqual(mainProductPrice);
     });
 });

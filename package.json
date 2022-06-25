@@ -24,6 +24,6 @@
         "wdio-chromedriver-service": "^7.3.2"
     },
     "scripts": {
-        "wdio": "wdio run test/wdio.conf.ts"
+        "test": "wdio run test/wdio.conf.ts"
     }
 }
