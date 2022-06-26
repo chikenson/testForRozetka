@@ -1,4 +1,4 @@
-import {mainPage, productPage, cartPage, header} from '../../pageObjects/index'
+import {mainPage, productPage, cartPage} from '../../pageObjects/index'
 import { productCounter } from '../../data/productCounter';
 
 describe('Events with cart.', () => {
@@ -15,13 +15,13 @@ describe('Events with cart.', () => {
         await cartPage.open();
 
         const counterInputValue: string = await cartPage.counterInputValue();
-        const cartButtonCounterValue: string = await header.cartButtonCounterValue();
+        const cartButtonCounterValue: string = await cartPage.header.cartButtonCounterValue();
         const cartProductTitleValue: string = await cartPage.productTitleValue();
-        const cartProductPriceValue: string = await cartPage.productPriceValue();
+        const cartSumPriceValue: string = await cartPage.productPriceValue();
         
-        await expect(counterInputValue).toEqual(productCounter);
-        await expect(cartButtonCounterValue).toEqual(productCounter);
-        await expect(cartProductTitleValue).toEqual(mainProductTitle);
-        await expect(cartProductPriceValue).toEqual(mainProductPrice);
+        await expect(counterInputValue).toBe(productCounter);
+        await expect(cartButtonCounterValue).toBe(productCounter);
+        await expect(cartProductTitleValue).toBe(mainProductTitle);
+        await expect(cartSumPriceValue).toBe(mainProductPrice);
     });
 });

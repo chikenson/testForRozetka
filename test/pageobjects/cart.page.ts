@@ -1,34 +1,38 @@
 import Page from './page';
 import { Element } from '../types'
+import header from './fragments/header'
 
 class CartPage extends Page {
-   open (): Promise<string> {
-     return super.open('cart');
-     }
+  header = header;
 
-   private get counterInput(): Element {
-     return $('[data-testid="cart-counter-input"]');
-     }
+  open (): Promise<string> {
+    return super.open('cart');
+  }
 
-   private get productTitle(): Element {
-     return $('[data-testid="title"]')
-     }
+  private get counterInput(): Element {
+    return $('[data-testid="cart-counter-input"]');
+  }
 
-   private get productPrice(): Element{
-     return $('[data-testid="cost"]')
-     }
+  private get productTitle(): Element {
+    return $('[data-testid="title"]')
+  }
 
-   counterInputValue(): Promise<string> {
-     return this.counterInput.getValue()
-     }
+  private get productPrice(): Element{
+    return $('[data-testid="cost"] ')
+  }
 
-   productTitleValue(): Promise<string> {
-     return this.productTitle.getText()
-     }
+  counterInputValue(): Promise<string> {
+    return this.counterInput.getValue()
+  }
 
-    productPriceValue(): Promise<string> {
-     return this.productPrice.getText()
-     }
+  productTitleValue(): Promise<string> {
+    return this.productTitle.getText()
+  }
+
+  async productPriceValue(): Promise<string> {
+    let price = await this.productPrice.getText();
+    return price = price.slice(0, price.length - 2);
+  }
 
 }
 

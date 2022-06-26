@@ -1,31 +1,33 @@
 import Page from './page';
-
+import header from './fragments/header'
 import { Element } from '../types'
 
 class MainPage extends Page {
-    private get discountBlock(): Element {
-        return $("//rz-goods-sections/section[1]");
-    }
+  header = header;
 
-    private get discountBlockElement(): Element {
-        return this.discountBlock.$('//rz-goods-section/ul/li[1]');
-    }
+  private get discountBlock(): Element {
+    return $("//rz-goods-sections/section[1]");
+  }
 
-    discountBlockElementTitle(): Promise<string>{
-        return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
-    }
+  private get discountBlockElement(): Element {
+    return this.discountBlock.$('//rz-goods-section/ul/li[1]');
+  }
 
-    discountBlockElementPrice(): Promise<string>{
-        return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
-    }
+  discountBlockElementTitle(): Promise<string>{
+    return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
+  }
 
-    async discountBlockElementClick(): Promise<void> {
-        await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
-    }
+  discountBlockElementPrice(): Promise<string>{
+    return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+  }
+
+  async discountBlockElementClick(): Promise<void> {
+    await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
+  }
   
-    open () {
-        return super.open('');
-    }
+  open () {
+    return super.open('');
+  }
 }
 
 export default new MainPage();
