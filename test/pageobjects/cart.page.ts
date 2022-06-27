@@ -21,17 +21,17 @@ class CartPage extends Page {
     return $('[data-testid="cost"] ')
   }
 
-  counterInputValue(): Promise<string> {
+  getCounterInputValue(): Promise<string> {
     return this.counterInput.getValue()
   }
 
-  productTitleValue(): Promise<string> {
+  getProductTitleValue(): Promise<string> {
     return this.productTitle.getText()
   }
 
-  async productPriceValue(): Promise<string> {
+  async getProductPriceValue(): Promise<string> {
     let price = await this.productPrice.getText();
-    return price = price.slice(0, price.length - 2);
+    return price.slice(0, price.length - 2);
   }
 
 }

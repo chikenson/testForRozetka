@@ -9,6 +9,7 @@ class ProductPage {
   }
 
   async buyButtonClick(): Promise<void>{
+    await this.buyButton.moveTo();
     await this.buyButton.click();
   }
 }

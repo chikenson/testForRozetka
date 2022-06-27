@@ -13,11 +13,11 @@ class MainPage extends Page {
     return this.discountBlock.$('//rz-goods-section/ul/li[1]');
   }
 
-  discountBlockElementTitle(): Promise<string>{
+  getDiscountBlockElementTitle(): Promise<string>{
     return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
   }
 
-  discountBlockElementPrice(): Promise<string>{
+  getDiscountBlockElementPrice(): Promise<string>{
     return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
   }
 
@@ -25,7 +25,7 @@ class MainPage extends Page {
     await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
   }
   
-  open () {
+  open (): Promise<string> {
     return super.open('');
   }
 }
