@@ -1,25 +1,27 @@
-import MainPage from  '../../pageObjects/main.page';
-import ProductPage from '../../pageObjects/product.page';
-import CartPage from '../../pageObjects/cart.page';
-import Header from '../../pageObjects/header';
+import {mainPage, productPage, cartPage} from '../../pageObjects/index'
+import { addedProductCounter } from '../../data/cartTestCounters';
 
 describe('Events with cart.', () => {
     it('Adding product to the cart from product page.', async () => {
-        await MainPage.open();
-        await browser.maximizeWindow();
-
-        const mainProductTitle: string = await MainPage.discountBlockElementTitle.getText();
-        const mainProductPrice: string = await MainPage.discountBlockElementPrice.getText();
-
-        await MainPage.discountBlockElement.click();
-
-        await ProductPage.buyButton.click();   
+        await mainPage.open();
         
-        await CartPage.open();
+        const mainProductTitle: string = await mainPage.getDiscountBlockElementTitle();
+        const mainProductPrice: string = await mainPage.getDiscountBlockElementPrice();
 
-        await expect(CartPage.counterInput).toHaveValueContaining("1");
-        await expect(CartPage.productTitle).toHaveTextContaining(mainProductTitle);
-        await expect(Header.cartButtonCounter).toHaveTextContaining("1");
-        await expect(CartPage.productPrice).toHaveTextContaining(mainProductPrice);
+        await mainPage.discountBlockElementClick();
+        
+        await productPage.buyButtonClick()
+        
+        await cartPage.open();
+
+        const counterInputValue: string = await cartPage.getCounterInputValue();
+        const cartButtonCounterValue: string = await cartPage.header.cartButtonCounterValue();
+        const cartProductTitleValue: string = await cartPage.getProductTitleValue();
+        const cartSumPriceValue: string = await cartPage.getProductPriceValue();
+        
+        await expect(counterInputValue).toBe(addedProductCounter);
+        await expect(cartButtonCounterValue).toBe(addedProductCounter);
+        await expect(cartProductTitleValue).toBe(mainProductTitle);
+        await expect(cartSumPriceValue).toBe(mainProductPrice);
     });
 });

@@ -1,4 +1,8 @@
 {
+    "name": "rozetka-tests",
+    "author": "chickenson",
+    "version": "0.1.0",
+    "private": true,
     "dependencies": {
         "wdio": "^6.0.1"
     },
@@ -20,6 +24,6 @@
         "wdio-chromedriver-service": "^7.3.2"
     },
     "scripts": {
-        "wdio": "wdio run test/wdio.conf.ts"
+        "test": "wdio run test/wdio.conf.ts"
     }
 }
