@@ -1,9 +1,16 @@
 import Page from './page';
-import header from './fragments/header'
+import {Header} from './fragments/header'
 import { Element } from '../types'
+import {ProductPage} from './product.page';
 
-class MainPage extends Page {
-  header = header;
+export class MainPage extends Page {
+
+  static async visit (): Promise<MainPage> {
+    await super.open('');
+    return new MainPage()
+  }
+
+  header = new Header();
 
   private get discountBlock(): Element {
     return $("//rz-goods-sections/section[1]");
@@ -21,13 +28,10 @@ class MainPage extends Page {
     return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
   }
 
-  async discountBlockElementClick(): Promise<void> {
+  async discountBlockElementClick(): Promise<ProductPage> {
     await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
-  }
-  
-  open (): Promise<string> {
-    return super.open('');
-  }
+
+    return new ProductPage()
+  } 
 }
 
-export default new MainPage();
