@@ -7,7 +7,7 @@ beforeEach(async () => {
    mainPage = await MainPage.visit();
 });
 
-describe.only('Events with cart.', () => {
+describe('Events with cart.', () => {
     it('Adding product to the cart from product page.', async () => {
         
         const mainProductTitle: string = await mainPage.getDiscountBlockElementTitle();

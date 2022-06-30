@@ -1,4 +1,5 @@
 import { Element } from '../../types'
+import { CatalogPage } from '../catalogPage/catalog.page';
 
 export class Header {
 
@@ -36,10 +37,10 @@ export class Header {
     return this
   }
 
-  async search(value): Promise<Header>{
+  async search(value): Promise<CatalogPage>{
     await this.searchInput.setValue(value)
     await this.searchButton.click()
 
-    return this
+    return new CatalogPage()
   }
  }

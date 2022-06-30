@@ -1,4 +1,5 @@
-import {MainPage, ProductPage, CartPage} from '../../pageObjects/index'
+import {MainPage, ProductPage, CartPage, CatalogPage} from '../../pageObjects/index'
+import { searchValue } from '../../data/searchTestValue';
 
 let mainPage;
 
@@ -7,8 +8,16 @@ beforeEach(async () => {
 })
 
 describe('Search test', () => {
-    it.only('With empty field.', async () => {
+    it('With empty field.', async () => {
 
-        await mainPage.header.search()
+        
+
+        const catalogPage: CatalogPage = await mainPage.header.search(searchValue)
+
+        await expect(catalogPage.title()).toHaveText(searchValue)
+
+
+
+        
     })
 })
