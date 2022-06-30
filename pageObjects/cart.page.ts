@@ -1,13 +1,16 @@
 import Page from './page';
 import { Element } from '../types'
-import header from './fragments/header'
+import {Header} from './fragments/header'
 
-class CartPage extends Page {
-  header = header;
+export class CartPage extends Page {
+  
+  static async visit (): Promise<CartPage> {
+     await super.open('cart');
 
-  open (): Promise<string> {
-    return super.open('cart');
+     return new CartPage();
   }
+
+  header = new Header();
 
   private get counterInput(): Element {
     return $('[data-testid="cart-counter-input"]');
@@ -31,9 +34,9 @@ class CartPage extends Page {
 
   async getProductPriceValue(): Promise<string> {
     let price = await this.productPrice.getText();
+
     return price.slice(0, price.length - 2);
   }
 
 }
 
-export default new CartPage();

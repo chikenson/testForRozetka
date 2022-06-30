@@ -1,17 +1,17 @@
 import { Element } from '../types'
-import header from './fragments/header'
+import {Header} from './fragments/header'
 
-class ProductPage {
-  header = header;
+export class ProductPage {
+  header = new Header();
 
   private get buyButton(): Element {
     return $("//app-product-buy-btn/app-buy-button/button");
   }
 
-  async buyButtonClick(): Promise<void>{
+  async buyButtonClick(): Promise<ProductPage>{
     await this.buyButton.moveTo();
     await this.buyButton.click();
+
+    return this
   }
 }
-
-export default new ProductPage();
