@@ -5,10 +5,18 @@ import { List } from './elements/list';
 
 export class CatalogPage extends Page {
 
-    title(){
+    list = new List();
+
+    header = new Header();
+
+    private get title(): Element{
         return $('h1[class*="catalog-heading"]')
     }
 
-    list = new List();
+    getTitleText(): Promise<string> {
+        return this.title.getText()
+    }
+
+    
 
 }
