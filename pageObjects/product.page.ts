@@ -1,5 +1,5 @@
-import { Element } from '../types'
-import {Header} from './fragments/header'
+import { Element } from '../types';
+import { Header } from './fragments/header';
 
 export class ProductPage {
   header = new Header();
@@ -12,6 +12,6 @@ export class ProductPage {
     await this.buyButton.moveTo();
     await this.buyButton.click();
 
-    return this
+    return this;
   }
 }

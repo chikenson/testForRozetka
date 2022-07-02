@@ -1,3 +1,3 @@
-export const addOneProduct: string = '1'
+export const addOneProduct = '1';
 
-export const addThreeProduct: Number = 3
+export const countOfProducts = 3;

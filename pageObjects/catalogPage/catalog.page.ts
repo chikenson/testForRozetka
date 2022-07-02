@@ -1,6 +1,6 @@
 import Page from './../page';
-import { Element } from '../../types'
-import {Header} from './../fragments/header'
+import { Element } from '../../types';
+import { Header } from './../fragments/header';
 import { CatalogList } from './fragments/catalog.list';
 
 export class CatalogPage extends Page {
@@ -10,13 +10,11 @@ export class CatalogPage extends Page {
     header = new Header();
 
     private get title(): Element{
-        return $('h1[class*="catalog-heading"]')
+        return $('h1[class*="catalog-heading"]');
     }
 
     getTitleText(): Promise<string> {
-        return this.title.getText()
+        return this.title.getText();
     }
-
-    
 
 }

@@ -1,14 +1,14 @@
 import Page from './page';
-import {Header} from './fragments/header'
-import { Element } from '../types'
-import {ProductPage} from './product.page';
-import {normalizePrice} from '../helpers/helpers'
+import { Header } from './fragments/header';
+import { Element } from '../types';
+import { ProductPage } from './product.page';
+import { normalizePrice } from '../helpers/helpers';
 
 export class MainPage extends Page {
 
   static async visit (): Promise<MainPage> {
     await super.open('');
-    return new MainPage()
+    return new MainPage();
   }
 
   header = new Header();
@@ -25,15 +25,15 @@ export class MainPage extends Page {
     return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
   }
 
-  async getDiscountBlockElementPrice(): Promise<Number>{
+  async getDiscountBlockElementPrice(): Promise<number>{
     const price = await this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
-    return normalizePrice(price)
+    return normalizePrice(price);
   }
 
   async discountBlockElementClick(): Promise<ProductPage> {
     await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
 
-    return new ProductPage()
-  } 
+    return new ProductPage();
+  }
 }
 
