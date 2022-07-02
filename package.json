@@ -27,7 +27,7 @@
     "scripts": {
         "test": "wdio run wdio.conf.ts",
         "searchTest": "wdio run wdio.conf.ts --spec search.spec.ts",
-        "cartTest": "wdio run wdio.conf.ts --spec cart.spec.ts" 
+        "cartTest": "wdio run wdio.conf.ts --spec cart.add.spec.ts" 
 
     }
 }

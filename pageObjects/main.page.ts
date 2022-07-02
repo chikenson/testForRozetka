@@ -2,6 +2,7 @@ import Page from './page';
 import {Header} from './fragments/header'
 import { Element } from '../types'
 import {ProductPage} from './product.page';
+import {normalizePrice} from '../helpers/helpers'
 
 export class MainPage extends Page {
 
@@ -24,8 +25,9 @@ export class MainPage extends Page {
     return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
   }
 
-  getDiscountBlockElementPrice(): Promise<string>{
-    return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+  async getDiscountBlockElementPrice(): Promise<Number>{
+    const price = await this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+    return normalizePrice(price)
   }
 
   async discountBlockElementClick(): Promise<ProductPage> {
