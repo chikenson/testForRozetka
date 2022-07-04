@@ -8,11 +8,11 @@ export class Header {
   }
 
   private get cartButton(): Element {
-    return this.root.$('button[opencart]');
+    return this.root.$('rz-cart');
   }
 
   private get cartButtonCounter(): Element{
-    return this.cartButton.$('.counter ');
+    return this.cartButton.$('.counter');
   }
 
   private get searchInput(): Element {
@@ -29,6 +29,10 @@ export class Header {
 
   getCartButtonCounterValue(): Promise <string>{
     return this.cartButtonCounter.getText();
+  }
+
+  cartCounterExisting() {
+    return this.cartButtonCounter.isExisting();
   }
 
   async accountButtonClick(): Promise<Header> {

@@ -19,7 +19,16 @@ export class CartPage extends Page {
     return $('.cart-receipt__sum-price');
   }
 
+  private get emptyCartValue(): Element {
+    return $('h4.cart-dummy__heading');
+  }
+
+  getEmptyCartValue(): Promise<string> {
+    return this.emptyCartValue.getText();
+  }
+
   async getTotalAmount(): Promise<number> {
+    await browser.pause(2000);
     const totalAmount: string = await this.totalAmount.getText();
 
     return normalizePrice(totalAmount);

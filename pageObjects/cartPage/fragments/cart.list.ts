@@ -28,6 +28,18 @@ export class CartList {
         return this.kebabMenu.nextElement().$('button');
     }
 
+    private get notification() {
+        return $('[data-testid="notification"]');
+    }
+
+    async getNotificationText() {
+        return this.notification.getText();
+    }
+
+    async setCounterInput(value) {
+        await this.counterInput.setValue(value);
+    }
+
     async kebabMenuIsDisplayed(): Promise<boolean> {
         return await this.kebabMenu.isDisplayed();
     }
@@ -44,8 +56,10 @@ export class CartList {
         return this;
     }
 
-    getCounterInputValue(): Promise<string> {
-        return this.counterInput.getValue();
+    async getCounterInputValue(): Promise<number> {
+        const value: string = await this.counterInput.getValue();
+
+        return Number(value);
     }
 
     async getProductPrice(): Promise<number> {

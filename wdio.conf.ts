@@ -240,6 +240,7 @@ export const config: Options.Testrunner = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     beforeTest: async function (test, context) {
         await browser.maximizeWindow();
     },
@@ -247,8 +248,10 @@ export const config: Options.Testrunner = {
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
      */
-    // beforeHook: function (test, context) {
-    // },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     beforeHook: async function (test, context) {
+        await browser.maximizeWindow();
+    },
     /**
      * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
      * afterEach in Mocha)

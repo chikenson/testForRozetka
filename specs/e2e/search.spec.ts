@@ -30,4 +30,5 @@ describe('Search test', function() {
 
         expect(await catalogPage.list.getEmpyContentText()).toBe(invalidSearchValue);
     });
+    // Find the bug, infinity loading
 });
