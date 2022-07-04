@@ -5,7 +5,7 @@ import { CartPage } from '../cart.page';
 export class CartList {
 
     private get items(): ElementArray{
-        return $$('[class*="cart-list__item"]');
+        return $$('.cart-list__item');
     }
 
     private get counterInput(): Element {
@@ -28,6 +28,10 @@ export class CartList {
         return this.kebabMenu.nextElement().$('button');
     }
 
+    async kebabMenuIsDisplayed(): Promise<boolean> {
+        return await this.kebabMenu.isDisplayed();
+    }
+
     async kebabMenuClick(): Promise<CartPage> {
         await this.kebabMenu.click();
 
@@ -44,8 +48,8 @@ export class CartList {
         return this.counterInput.getValue();
     }
 
-    async getProductPrice(number): Promise<number> {
-        const price: string = await this.productPrices[number - 1].getText();
+    async getProductPrice(): Promise<number> {
+        const price: string = await this.productPrices[0].getText();
 
         return normalizePrice(price);
     }
@@ -59,14 +63,10 @@ export class CartList {
     }
 
     async getProductPricesSum(): Promise<number> {
+        const initialValue = 0;
 
-        const length = await this.getNumberOfProducts();
-        let sum = 0;
-        for(let i=1;i<=length;i++) {
-           const price = await this.getProductPrice(i);
-           sum = sum + price;
-        }
-        return sum;
+        const strPrices = await this.productPrices.map((item) => item.getText());
 
+        return strPrices.reduce((previousValue, currentValue) => previousValue + normalizePrice(currentValue), initialValue);
     }
 }

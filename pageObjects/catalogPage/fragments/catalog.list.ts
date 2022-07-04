@@ -5,15 +5,15 @@ import { CatalogPage } from '../catalog.page';
 export class CatalogList {
 
     private get content(): Element {
-        return $('[class*="content_type_catalog"]');
+        return $('.content_type_catalog');
     }
 
     private get contentEmptyValue(): Element {
-        return this.content.$('[class="catalog-empty"]');
+        return this.content.$('.catalog-empty');
     }
 
     private get items(): ElementArray {
-        return this.content.$$('[class*="catalog-grid__cell"]');
+        return this.content.$$('.catalog-grid__cell');
     }
 
     getEmpyContentText(): Promise<string> {
@@ -21,11 +21,11 @@ export class CatalogList {
     }
 
     getItemTitle(number): Promise<string> {
-        return this.items[number - 1].$('[class="goods-tile__title"]').getText();
+        return this.items[number - 1].$('.goods-tile__title').getText();
     }
 
-    async getItemPrice(number): Promise<number> {
-        const price = await this.items[number - 1].$('[class="goods-tile__price-value"]').getText();
+    async getItemPrice(): Promise<number> {
+        const price = await this.items[0].$('[class="goods-tile__price-value"]').getText();
 
         return normalizePrice(price);
     }

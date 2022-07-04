@@ -12,8 +12,8 @@ describe('Adding product to the cart', function ()  {
 
      afterEach(async function () {
          const cartPage = await CartPage.visit();
-         await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
 
+         await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
      });
 
     it('From product page.', async function () {
@@ -30,7 +30,7 @@ describe('Adding product to the cart', function ()  {
         expect(await cartPage.list.getCounterInputValue()).toBe(addOneProduct);
         expect(await cartPage.header.getCartButtonCounterValue()).toBe(addOneProduct);
         expect(await cartPage.list.getProductTitleValue()).toBe(mainProductTitle);
-        expect(await cartPage.list.getProductPrice(1)).toBe(mainProductPrice);
+        expect(await cartPage.list.getProductPrice()).toBe(mainProductPrice);
     });
 
     it('From catalog.', async function () {
@@ -38,7 +38,7 @@ describe('Adding product to the cart', function ()  {
         const catalogPage: CatalogPage = await mainPage.header.search(validSearchValue);
 
         const catalogProductTitle: string = await catalogPage.list.getItemTitle(addOneProduct);
-        const catalogProductPrice: number = await catalogPage.list.getItemPrice(addOneProduct);
+        const catalogProductPrice: number = await catalogPage.list.getItemPrice();
 
         await catalogPage.list.buyItems(addOneProduct);
 
@@ -47,7 +47,7 @@ describe('Adding product to the cart', function ()  {
         expect(await cartPage.list.getCounterInputValue()).toBe(addOneProduct);
         expect(await cartPage.header.getCartButtonCounterValue()).toBe(addOneProduct);
         expect(await cartPage.list.getProductTitleValue()).toBe(catalogProductTitle);
-        expect(await cartPage.list.getProductPrice(1)).toBe(catalogProductPrice);
+        expect(await cartPage.list.getProductPrice()).toBe(catalogProductPrice);
     });
 
     it('Adding a few products to the cart.', async function () {

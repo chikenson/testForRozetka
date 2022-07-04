@@ -4,15 +4,15 @@ import { CatalogPage } from '../catalogPage/catalog.page';
 export class Header {
 
   private get root(): Element {
-    return $('rz-header');
+    return $('header.header');
   }
 
   private get cartButton(): Element {
-    return this.root.$('rz-cart > button');
+    return this.root.$('button[opencart]');
   }
 
   private get cartButtonCounter(): Element{
-    return this.cartButton.$('[class*="counter "]');
+    return this.cartButton.$('.counter ');
   }
 
   private get searchInput(): Element {
@@ -20,11 +20,11 @@ export class Header {
   }
 
   private get searchButton(): Element {
-    return $('button[class*="search-form__submit"]');
+    return $('button.search-form__submit');
   }
 
   private get accountButton(): Element {
-    return $('[class*="header-actions__item--user"]');
+    return $('.header-actions__item--user');
   }
 
   getCartButtonCounterValue(): Promise <string>{

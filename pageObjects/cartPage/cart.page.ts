@@ -16,7 +16,7 @@ export class CartPage extends Page {
   header = new Header();
 
   private get totalAmount(): Element {
-    return $('[class*="sum-price"]');
+    return $('.cart-receipt__sum-price');
   }
 
   async getTotalAmount(): Promise<number> {

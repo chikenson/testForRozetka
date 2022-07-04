@@ -14,24 +14,24 @@ export class MainPage extends Page {
   header = new Header();
 
   private get discountBlock(): Element {
-    return $("//rz-goods-sections/section[1]");
+    return $('.main-goods__grid');
   }
 
   private get discountBlockElement(): Element {
-    return this.discountBlock.$('//rz-goods-section/ul/li[1]');
+    return this.discountBlock.$('.main-goods__cell');
   }
 
   getDiscountBlockElementTitle(): Promise<string>{
-    return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
+    return this.discountBlockElement.$('.tile__title').getText();
   }
 
   async getDiscountBlockElementPrice(): Promise<number>{
-    const price = await this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+    const price = await this.discountBlockElement.$('.tile__price-value').getText();
     return normalizePrice(price);
   }
 
   async discountBlockElementClick(): Promise<ProductPage> {
-    await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
+    await this.discountBlockElement.click();
 
     return new ProductPage();
   }

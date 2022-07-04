@@ -10,7 +10,7 @@ export class CatalogPage extends Page {
     header = new Header();
 
     private get title(): Element{
-        return $('h1[class*="catalog-heading"]');
+        return $('h1.catalog-heading');
     }
 
     getTitleText(): Promise<string> {
