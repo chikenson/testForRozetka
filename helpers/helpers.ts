@@ -6,4 +6,4 @@ export const normalizePrice = (strPrice: string): number => {
       }
     }
     return Number(price);
-  };
+};

@@ -28,7 +28,6 @@ export class CartPage extends Page {
   }
 
   async getTotalAmount(): Promise<number> {
-    await browser.pause(2000);
     const totalAmount: string = await this.totalAmount.getText();
 
     return normalizePrice(totalAmount);

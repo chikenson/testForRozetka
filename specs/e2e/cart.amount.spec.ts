@@ -1,6 +1,8 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { addOneProduct } from '../../data/cartTestCounters';
+import { addOneProduct } from '../../data/cartAddTestCounters';
 import { validSearchValue } from '../../data/searchTestValues';
+import { zeroAmountNotification, millionAmountNotification } from '../../data/cartAmountTestMessages';
+import { counterIsMillion, counterIsRandomValid, counterIsZero } from '../../data/cartAmountProductCounters';
 
 let mainPage;
 let cartPage;
@@ -16,38 +18,44 @@ describe('Change amount of product', function ()  {
         cartPage = await CartPage.visit();
      });
 
-     it('Valid amount.', async function () {
+     afterEach(async function () {
+        const cartPage = await CartPage.visit();
+
+        await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
+    });
+
+    it('Valid amount.', async function () {
 
         const productPrice = await cartPage.list.getProductPrice();
 
-        await cartPage.list.setCounterInput(4);
+        const counterValue: number = counterIsRandomValid();
+
+        await cartPage.list.setCounterInput(counterValue);
+
+        await browser.pause(2000);
 
         const totalAmount = await cartPage.getTotalAmount();
 
-        expect(totalAmount).toBe(productPrice * 4);
+        expect(totalAmount).toBe(productPrice * counterValue);
 
     });
 
     it('1000000 amount', async function () {
 
-        const millionAmountNotification = `Товар ${await cartPage.list.getProductTitleValue()} отпускается в количестве не больше 999999 единиц`;
-
-        await cartPage.list.setCounterInput(1000000);
+        await cartPage.list.setCounterInput(counterIsMillion);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(millionAmountNotification);
+        expect(await cartPage.list.getNotificationText()).toBe(millionAmountNotification(await cartPage.list.getProductTitleValue()));
     });
 
     it('0 amount', async function () {
 
-        const zeroAmountNotification = `Товар ${await cartPage.list.getProductTitleValue()} отпускается в количестве не меньше 1 единицы`;
-
-        await cartPage.list.setCounterInput(0);
+        await cartPage.list.setCounterInput(counterIsZero);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(zeroAmountNotification);
+        expect(await cartPage.list.getNotificationText()).toBe(zeroAmountNotification(await cartPage.list.getProductTitleValue()));
 
     });
 

@@ -27,8 +27,10 @@ export class Header {
     return $('.header-actions__item--user');
   }
 
-  getCartButtonCounterValue(): Promise <string>{
-    return this.cartButtonCounter.getText();
+  async getCartButtonCounterValue(): Promise <number>{
+    const value = await this.cartButtonCounter.getText();
+
+    return Number(value);
   }
 
   cartCounterExisting() {

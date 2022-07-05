@@ -30,8 +30,8 @@ export class CatalogList {
         return normalizePrice(price);
     }
 
-    async buyItems(amount): Promise<CatalogPage> {
-        for(let i = 0; i <= (amount - 1); i++) {
+    async buyItems(amountOfProducts): Promise<CatalogPage> {
+        for(let i = 0; i <= (amountOfProducts - 1); i++) {
              await this.items[i].$('[class*="buy-button"]').click();
         }
 
