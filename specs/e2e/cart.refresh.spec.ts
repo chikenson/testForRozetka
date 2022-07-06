@@ -1,11 +1,11 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { addOneProduct } from '../../data/cartAddTestCounters';
+import { addOneProduct } from '../../data/cartAmountCounters';
 import { validSearchValue } from '../../data/searchTestValues';
 
 let mainPage;
 let cartPage;
 
-describe('Delete from cart', function ()  {
+describe('Refresh cart', function ()  {
 
     beforeEach(async function () {
         mainPage = await MainPage.visit();
@@ -20,7 +20,7 @@ describe('Delete from cart', function ()  {
 
         await browser.refresh();
 
-        expect(await cartPage.list.getNumberOfProducts()).toBe(1);
-        expect(await cartPage.header.getCartButtonCounterValue()).toBe("1");
+        expect(await cartPage.list.getNumberOfProducts()).toBe(addOneProduct);
+        expect(await cartPage.header.getCartButtonCounterValue()).toBe(addOneProduct);
     });
 });

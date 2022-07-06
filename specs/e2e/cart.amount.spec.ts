@@ -32,7 +32,12 @@ describe('Change amount of product', function ()  {
 
         await cartPage.list.setCounterInput(counterValue);
 
-        await browser.pause(2000);
+        await browser.waitUntil(async () => (await cartPage.getTotalAmount()) === (productPrice*counterValue),
+            {
+            timeout: 10000,
+            timeoutMsg: 'expected text to be different after 5s'
+            }
+        );
 
         const totalAmount = await cartPage.getTotalAmount();
 
