@@ -10,6 +10,16 @@
    > npm run test
 
 4. You can start specific test file with commands:
-   > npm run cartTest
+   >npm run cartTest
+
+   >npm run cartAddTest
+
+   >npm run cartAmountTest
+
+   >npm run cartDeleteTest
+
+   >npm run cartRefreshTest
    
    >npm run searchTest
+
+   >npm run registrationTest
