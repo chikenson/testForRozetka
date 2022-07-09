@@ -9,8 +9,8 @@ describe('Change amount of product', function ()  {
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.validSearchValue);
-        await catalogPage.list.buyItems(data.addOneProduct);
+        const catalogPage: CatalogPage = await mainPage.header.search(data.searchValue);
+        await catalogPage.list.buyItems(data.oneProduct);
 
         cartPage = await CartPage.visit();
      });
@@ -25,7 +25,7 @@ describe('Change amount of product', function ()  {
 
         const productPrice = await cartPage.list.getProductPrice();
 
-        const counterValue: number = data.counterIsRandomValid();
+        const counterValue: number = data.counterRandomValue;
 
         await cartPage.list.setCounterInput(counterValue);
 
@@ -44,7 +44,7 @@ describe('Change amount of product', function ()  {
 
     it('1000000 amount', async function () {
 
-        await cartPage.list.setCounterInput(data.counterIsMillion);
+        await cartPage.list.setCounterInput(data.counterMillionValue);
 
         await cartPage.list.getNotificationText();
 
@@ -53,7 +53,7 @@ describe('Change amount of product', function ()  {
 
     it('0 amount', async function () {
 
-        await cartPage.list.setCounterInput(data.counterIsZero);
+        await cartPage.list.setCounterInput(data.counterZeroValue);
 
         await cartPage.list.getNotificationText();
 

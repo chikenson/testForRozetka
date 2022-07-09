@@ -1,3 +1,3 @@
-export const validSearchValue = "Samsung";
+export const searchValue = "Samsung";
 
-export const addOneProduct = 1;
+export const oneProduct = 1;

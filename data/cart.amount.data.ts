@@ -1,14 +1,14 @@
-export const addOneProduct = 1;
+import { randomValue } from "../helpers/helpers";
 
-export const counterIsMillion = 1000000;
+export const oneProduct = 1;
 
-export const counterIsZero = 0;
+export const counterMillionValue = 1000000;
 
-export const validSearchValue = "Samsung";
+export const counterZeroValue = 0;
 
-export const counterIsRandomValid = (): number => {
-    return Math.floor(Math.random() * 7 + 2);
- };
+export const searchValue = "Samsung";
+
+export const counterRandomValue = randomValue(9, 2);
 
 export const zeroAmountNotification = (productName) => {
     return `Товар ${productName} отпускается в количестве не меньше 1 единицы`;

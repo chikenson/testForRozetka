@@ -1,5 +1,5 @@
-export const addOneProduct = 1;
+export const oneProduct = 1;
 
-export const countOfProducts = 3;
+export const threeProducts = 3;
 
-export const validSearchValue = "Samsung";
+export const searchValue = "Samsung";
