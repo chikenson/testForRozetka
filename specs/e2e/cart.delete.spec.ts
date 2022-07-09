@@ -1,7 +1,5 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { addOneProduct } from '../../data/cartAddTestCounters';
-import { validSearchValue } from '../../data/searchTestValues';
-import { emptyCartText } from '../../data/cartDeleteTestText';
+import { emptyCartText, addOneProduct, validSearchValue  } from '../../data/cart.delete.data';
 
 let mainPage;
 let cartPage;

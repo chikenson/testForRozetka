@@ -1,8 +1,5 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { addOneProduct } from '../../data/cartAddTestCounters';
-import { validSearchValue } from '../../data/searchTestValues';
-import { zeroAmountNotification, millionAmountNotification } from '../../data/cartAmountTestMessages';
-import { counterIsMillion, counterIsRandomValid, counterIsZero } from '../../data/cartAmountProductCounters';
+import  * as data  from '../../data/cart.amount.data';
 
 let mainPage;
 let cartPage;
@@ -12,8 +9,8 @@ describe('Change amount of product', function ()  {
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        const catalogPage: CatalogPage = await mainPage.header.search(validSearchValue);
-        await catalogPage.list.buyItems(addOneProduct);
+        const catalogPage: CatalogPage = await mainPage.header.search(data.validSearchValue);
+        await catalogPage.list.buyItems(data.addOneProduct);
 
         cartPage = await CartPage.visit();
      });
@@ -28,7 +25,7 @@ describe('Change amount of product', function ()  {
 
         const productPrice = await cartPage.list.getProductPrice();
 
-        const counterValue: number = counterIsRandomValid();
+        const counterValue: number = data.counterIsRandomValid();
 
         await cartPage.list.setCounterInput(counterValue);
 
@@ -47,20 +44,20 @@ describe('Change amount of product', function ()  {
 
     it('1000000 amount', async function () {
 
-        await cartPage.list.setCounterInput(counterIsMillion);
+        await cartPage.list.setCounterInput(data.counterIsMillion);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(millionAmountNotification(await cartPage.list.getProductTitleValue()));
+        expect(await cartPage.list.getNotificationText()).toBe(data.millionAmountNotification(await cartPage.list.getProductTitleValue()));
     });
 
     it('0 amount', async function () {
 
-        await cartPage.list.setCounterInput(counterIsZero);
+        await cartPage.list.setCounterInput(data.counterIsZero);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(zeroAmountNotification(await cartPage.list.getProductTitleValue()));
+        expect(await cartPage.list.getNotificationText()).toBe(data.zeroAmountNotification(await cartPage.list.getProductTitleValue()));
 
     });
 

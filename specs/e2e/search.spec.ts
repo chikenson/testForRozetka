@@ -1,6 +1,5 @@
 import { MainPage, CatalogPage } from '../../pageObjects/index';
-import { emptySearchValue, validSearchValue, invalidSearchValue } from '../../data/searchTestValues';
-import { productNotFoundText } from '../../data/searchTestValues';
+import { emptySearchValue, validSearchValue, invalidSearchValue, productNotFoundText } from '../../data/search.data';
 
 let mainPage;
 

@@ -1,6 +1,5 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { addOneProduct } from '../../data/cartAmountCounters';
-import { validSearchValue } from '../../data/searchTestValues';
+import { validSearchValue, addOneProduct } from '../../data/cart.refresh.data';
 
 let mainPage;
 let cartPage;
