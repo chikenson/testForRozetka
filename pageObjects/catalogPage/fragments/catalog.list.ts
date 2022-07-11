@@ -1,4 +1,4 @@
-import { normalizePrice } from '../../../helpers/helpers';
+import { helpers } from '../../../helpers/helpers';
 import { Element, ElementArray } from '../../../types';
 import { CatalogPage } from '../catalog.page';
 
@@ -20,17 +20,17 @@ export class CatalogList {
         return this.contentEmptyValue.getText();
     }
 
-    getItemTitle(number): Promise<string> {
-        return this.items[number - 1].$('.goods-tile__title').getText();
+    getItemTitle(): Promise<string> {
+        return this.items[0].$('.goods-tile__title').getText();
     }
 
     async getItemPrice(): Promise<number> {
         const price = await this.items[0].$('[class="goods-tile__price-value"]').getText();
 
-        return normalizePrice(price);
+        return helpers.normalizePrice(price);
     }
 
-    async buyItems(amountOfProducts): Promise<CatalogPage> {
+    async buyItems(amountOfProducts: number): Promise<CatalogPage> {
         for(let i = 0; i <= (amountOfProducts - 1); i++) {
              await this.items[i].$('[class*="buy-button"]').click();
         }

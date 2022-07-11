@@ -18,7 +18,7 @@ describe('Change amount of product', function ()  {
      afterEach(async function () {
         const cartPage = await CartPage.visit();
 
-        await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
+        await cartPage.list.cleanCart;
     });
 
     it('Valid amount.', async function () {

@@ -5,7 +5,7 @@ export class ProductPage {
   header = new Header();
 
   private get buyButton(): Element {
-    return $("//app-product-buy-btn/app-buy-button/button");
+    return $('rz-product-main-info .buy-button');
   }
 
   async buyButtonClick(): Promise<ProductPage>{

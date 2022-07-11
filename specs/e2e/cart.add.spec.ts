@@ -10,9 +10,9 @@ describe('Adding product to the cart', function ()  {
      });
 
      afterEach(async function () {
-         const cartPage = await CartPage.visit();
+        const cartPage = await CartPage.visit();
 
-         await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
+        await cartPage.list.cleanCart();
      });
 
     it('From product page.', async function () {

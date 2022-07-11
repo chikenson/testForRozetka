@@ -1,4 +1,4 @@
-import { randomValue } from "../helpers/helpers";
+import { helpers }  from "../helpers/helpers";
 
 export const oneProduct = 1;
 
@@ -8,7 +8,7 @@ export const counterZeroValue = 0;
 
 export const searchValue = "Samsung";
 
-export const counterRandomValue = randomValue(9, 2);
+export const counterRandomValue = helpers.randomValue(9, 2);
 
 export const zeroAmountNotification = (productName) => {
     return `Товар ${productName} отпускается в количестве не меньше 1 единицы`;

@@ -1,5 +1,6 @@
 import { Element } from '../../types';
 import { CatalogPage } from '../catalogPage/catalog.page';
+import { EntryWindow } from './entry.window';
 
 export class Header {
 
@@ -23,7 +24,7 @@ export class Header {
     return $('button.search-form__submit');
   }
 
-  private get accountButton(): Element {
+  private get entryButton(): Element {
     return $('.header-actions__item--user');
   }
 
@@ -33,14 +34,14 @@ export class Header {
     return Number(value);
   }
 
-  cartCounterExisting() {
-    return this.cartButtonCounter.isExisting();
-  }
+  // cartCounterExisting() {
+  //   return this.cartButtonCounter.isExisting();
+  // }
 
-  async accountButtonClick(): Promise<Header> {
-    await this.accountButton.click();
+  async entryButtonClick(): Promise<EntryWindow> {
+    await this.entryButton.click();
 
-    return this;
+    return new EntryWindow();
   }
 
   async search(value): Promise<CatalogPage>{

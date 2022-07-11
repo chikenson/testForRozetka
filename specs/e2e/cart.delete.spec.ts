@@ -17,7 +17,7 @@ describe('Refresh the cart', function ()  {
 
     it('One product ', async function () {
 
-        await (await cartPage.list.kebabMenuClick()).list.deleteButtonClick();
+        await cartPage.list.cleanCart();
 
         expect(await cartPage.getEmptyCartValue()).toBe(emptyCartText);
         expect(await cartPage.header.cartCounterExisting()).toBe(false);

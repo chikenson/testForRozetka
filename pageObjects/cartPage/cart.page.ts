@@ -2,7 +2,7 @@ import Page from '../page';
 import { Element } from '../../types';
 import { Header } from '../fragments/header';
 import { CartList } from './fragments/cart.list';
-import { normalizePrice } from '../../helpers/helpers';
+import { helpers } from '../../helpers/helpers';
 
 export class CartPage extends Page {
 
@@ -30,7 +30,7 @@ export class CartPage extends Page {
   async getTotalAmount(): Promise<number> {
     const totalAmount: string = await this.totalAmount.getText();
 
-    return normalizePrice(totalAmount);
+    return helpers.normalizePrice(totalAmount);
   }
 }
 
