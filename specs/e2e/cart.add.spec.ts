@@ -36,7 +36,7 @@ describe('Adding product to the cart', function ()  {
 
         const catalogPage: CatalogPage = await mainPage.header.search(searchValue);
 
-        const catalogProductTitle: string = await catalogPage.list.getItemTitle(oneProduct);
+        const catalogProductTitle: string = await catalogPage.list.getItemTitle();
         const catalogProductPrice: number = await catalogPage.list.getItemPrice();
 
         await catalogPage.list.buyItems(oneProduct);
