@@ -1,37 +1,39 @@
 import Page from './page';
-import {Header} from './fragments/header'
-import { Element } from '../types'
-import {ProductPage} from './product.page';
+import { Header } from './fragments/header';
+import { Element } from '../types';
+import { ProductPage } from './product.page';
+import { normalizePrice } from '../helpers/helpers';
 
 export class MainPage extends Page {
 
   static async visit (): Promise<MainPage> {
     await super.open('');
-    return new MainPage()
+    return new MainPage();
   }
 
   header = new Header();
 
   private get discountBlock(): Element {
-    return $("//rz-goods-sections/section[1]");
+    return $('.main-goods__grid');
   }
 
   private get discountBlockElement(): Element {
-    return this.discountBlock.$('//rz-goods-section/ul/li[1]');
+    return this.discountBlock.$('.main-goods__cell');
   }
 
   getDiscountBlockElementTitle(): Promise<string>{
-    return this.discountBlockElement.$('//*[@class="tile__title"]').getText();
+    return this.discountBlockElement.$('.tile__title').getText();
   }
 
-  getDiscountBlockElementPrice(): Promise<string>{
-    return this.discountBlockElement.$('//*[@class="tile__price-value"]').getText();
+  async getDiscountBlockElementPrice(): Promise<number>{
+    const price = await this.discountBlockElement.$('.tile__price-value').getText();
+    return normalizePrice(price);
   }
 
   async discountBlockElementClick(): Promise<ProductPage> {
-    await this.discountBlock.$('//rz-goods-section/ul/li[1]').click();
+    await this.discountBlockElement.click();
 
-    return new ProductPage()
-  } 
+    return new ProductPage();
+  }
 }
 

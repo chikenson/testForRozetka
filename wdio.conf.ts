@@ -1,4 +1,4 @@
-import type { Options } from '@wdio/types'
+import type { Options } from '@wdio/types';
 
 export const config: Options.Testrunner = {
     //
@@ -79,7 +79,7 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -126,7 +126,7 @@ export const config: Options.Testrunner = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 20000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -140,7 +140,7 @@ export const config: Options.Testrunner = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -163,14 +163,12 @@ export const config: Options.Testrunner = {
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
 
-
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 100000
     },
     //
     // =====
@@ -242,6 +240,7 @@ export const config: Options.Testrunner = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     beforeTest: async function (test, context) {
         await browser.maximizeWindow();
     },
@@ -249,8 +248,10 @@ export const config: Options.Testrunner = {
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
      */
-    // beforeHook: function (test, context) {
-    // },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     beforeHook: async function (test, context) {
+        await browser.maximizeWindow();
+    },
     /**
      * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
      * afterEach in Mocha)
@@ -269,7 +270,6 @@ export const config: Options.Testrunner = {
      */
     // afterTest: function(test, context, { error, result, duration, passed, retries }) {
     // },
-
 
     /**
      * Hook that gets executed after the suite has ended
@@ -320,4 +320,4 @@ export const config: Options.Testrunner = {
     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
-}
+};
