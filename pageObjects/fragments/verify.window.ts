@@ -5,16 +5,17 @@ export class VerifyWindow {
         return $('rz-register-phone');
     }
 
-    async displayedOfVerifyWindow(): Promise<boolean> {
-        await this.verifyWindow.waitForExist();
-        return await this.verifyWindow.isDisplayed();
-    }
-
     private get verifyCodeInput(): Element {
         return $('#registerFormVerifyCode');
     }
 
-    async displayedOfVerifyCodeInput(): Promise<boolean> {
-        return await this.verifyCodeInput.isDisplayed();
+    async displayedOfVerifyWindow(): Promise<boolean> {
+        await this.verifyWindow.waitForExist();
+
+        return this.verifyWindow.isDisplayed();
+    }
+
+    displayedOfVerifyCodeInput(): Promise<boolean> {
+        return this.verifyCodeInput.isDisplayed();
     }
 }

@@ -1,16 +1,16 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { searchValue, oneProduct } from '../../data/cart.refresh.data';
+import { data } from '../../data/cartRefresh/cart.refresh.data';
 
-let mainPage;
-let cartPage;
+let mainPage: MainPage;
+let cartPage: CartPage;
 
 describe('Refresh cart', function ()  {
 
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        const catalogPage: CatalogPage = await mainPage.header.search(searchValue);
-        await catalogPage.list.buyItems(oneProduct);
+        const catalogPage: CatalogPage = await mainPage.header.search(data.searchValue);
+        await catalogPage.list.buyItems(data.productAmount);
 
         cartPage = await CartPage.visit();
      });
@@ -19,7 +19,7 @@ describe('Refresh cart', function ()  {
 
         await browser.refresh();
 
-        expect(await cartPage.list.getNumberOfProducts()).toBe(oneProduct);
-        expect(await cartPage.header.getCartButtonCounterValue()).toBe(oneProduct);
+        expect(await cartPage.list.getNumberOfProducts()).toBe(data.productAmount);
+        expect(await cartPage.header.getCartButtonCounterValue()).toBe(data.productAmount);
     });
 });

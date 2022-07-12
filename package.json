@@ -35,7 +35,7 @@
         "cartDeleteTest": "wdio run wdio.conf.ts --spec cart.delete.spec.ts",
         "cartRefreshTest": "wdio run wdio.conf.ts --spec cart.refresh.spec.ts",
         "cartAmountTest": "wdio run wdio.conf.ts --spec cart.amount.spec.ts",
-        "registrationTest": "wdio run wdio.conf.ts --spec registration.spec.ts",
+        "entryTest": "wdio run wdio.conf.ts --spec entry.spec.ts",
         "lint": "eslint . --ext .ts .",
         "lint:fix": "eslint . --ext .ts . --fix",
         "compile": "tsc --outDir tmp"

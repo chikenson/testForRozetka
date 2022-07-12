@@ -1,6 +1,5 @@
 import { ElementArray, Element } from '../../../types';
 import { helpers } from '../../../helpers/helpers';
-//import { CartPage } from '../cart.page';
 
 export class CartList {
 

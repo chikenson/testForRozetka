@@ -32,5 +32,14 @@ export class CartPage extends Page {
 
     return helpers.normalizePrice(totalAmount);
   }
+
+  async waitUntilTotalAmountChanges(counterValue: number, priceValue: number) {
+    await browser.waitUntil(async () => (await this.getTotalAmount()) === (priceValue*counterValue),
+            {
+            timeout: 10000,
+            timeoutMsg: 'expected text to be different after 10s'
+            }
+        );
+  }
 }
 

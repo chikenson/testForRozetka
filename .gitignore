@@ -1,5 +1,4 @@
 node_modules
 tmp
 playground.ts
-registration.spec.ts
-registration.data.ts
+.vscode

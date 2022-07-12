@@ -1,4 +1,4 @@
-import { Element } from "../../types";
+import { Element, Profile } from "../../types";
 import { VerifyWindow } from "./verify.window";
 
 export class RegistrationWindow {
@@ -76,12 +76,12 @@ export class RegistrationWindow {
         return new VerifyWindow();
     }
 
-    async register(profile): Promise<this> {
-        await this.setNameInput(profile.name);
-        await this.setSurNameInput(profile.surName);
-        await this.setPhoneInput(profile.phone);
-        await this.setMailInput(profile.mail);
-        await this.setPasswordInput(profile.password);
+    async register({ name,surName,phone,mail,password }: Profile): Promise<this> {
+        await this.setNameInput(name);
+        await this.setSurNameInput(surName);
+        await this.setPhoneInput(phone);
+        await this.setMailInput(mail);
+        await this.setPasswordInput(password);
         await this.submitButtonClick();
 
         return this;

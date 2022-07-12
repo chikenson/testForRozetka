@@ -1,63 +1,62 @@
 import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import  * as data  from '../../data/cart.amount.data';
+import { validData }  from '../../data/cartAmount/valid.value';
+import { maxInvalidData }  from '../../data/cartAmount/invalid.max.value';
+import { minInvalidData }  from '../../data/cartAmount/invalid.min.value';
 
-let mainPage;
-let cartPage;
+let mainPage: MainPage;
+let cartPage: CartPage;
+let productTitle: string;
 
 describe('Change amount of product', function ()  {
 
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.searchValue);
-        await catalogPage.list.buyItems(data.oneProduct);
+        const catalogPage: CatalogPage = await mainPage.header.search(validData.searchValue);
+        await catalogPage.list.buyItems(validData.productAmount);
 
         cartPage = await CartPage.visit();
+
+        productTitle = await cartPage.list.getProductTitleValue();
      });
 
      afterEach(async function () {
         const cartPage = await CartPage.visit();
 
-        await cartPage.list.cleanCart;
+        await cartPage.list.cleanCart();
+
     });
 
-    it('Valid amount.', async function () {
+    it('Valid value.', async function () {
 
         const productPrice = await cartPage.list.getProductPrice();
 
-        const counterValue: number = data.counterRandomValue;
+        await cartPage.list.setCounterInput(validData.counterValidValue);
 
-        await cartPage.list.setCounterInput(counterValue);
-
-        await browser.waitUntil(async () => (await cartPage.getTotalAmount()) === (productPrice*counterValue),
-            {
-            timeout: 10000,
-            timeoutMsg: 'expected text to be different after 5s'
-            }
-        );
+        await cartPage.waitUntilTotalAmountChanges(validData.counterValidValue, productPrice);
 
         const totalAmount = await cartPage.getTotalAmount();
 
-        expect(totalAmount).toBe(productPrice * counterValue);
+        expect(totalAmount).toBe(productPrice * validData.counterValidValue);
 
     });
 
-    it('1000000 amount', async function () {
+    it('Invalid max value', async function () {
 
-        await cartPage.list.setCounterInput(data.counterMillionValue);
+        await cartPage.list.setCounterInput(maxInvalidData.counterValue);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(data.millionAmountNotification(await cartPage.list.getProductTitleValue()));
+        expect(await cartPage.list.getNotificationText()).toBe(maxInvalidData.notification(productTitle));
     });
 
-    it('0 amount', async function () {
+    it('Invalid min value', async function () {
 
-        await cartPage.list.setCounterInput(data.counterZeroValue);
+        await cartPage.list.setCounterInput(minInvalidData.counterValue);
 
         await cartPage.list.getNotificationText();
 
-        expect(await cartPage.list.getNotificationText()).toBe(data.zeroAmountNotification(await cartPage.list.getProductTitleValue()));
+        expect(await cartPage.list.getNotificationText()).toBe(minInvalidData.notification(productTitle));
 
     });
 

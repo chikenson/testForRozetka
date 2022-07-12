@@ -1,7 +1,9 @@
 import { MainPage, CatalogPage } from '../../pageObjects/index';
-import * as data from '../../data/search.data';
+import { validData } from '../../data/search/valid.data';
+import { invalidData } from '../../data/search/invalid.data';
+import { emptyFieldData } from '../../data/search/empty.field.data';
 
-let mainPage;
+let mainPage: MainPage;
 
 describe('Search test', function() {
     beforeEach(async function() {
@@ -10,24 +12,24 @@ describe('Search test', function() {
 
     it('With empty field.', async function() {
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.emptySearchValue);
+        const catalogPage: CatalogPage = await mainPage.header.search();
 
-        expect(await catalogPage.list.getEmpyContentText()).toBe(data.productNotFoundText);
+        expect(await catalogPage.list.getEmpyContentText()).toBe(emptyFieldData.productNotFoundText);
     });
 
     it('With valid name of product.', async function() {
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.validSearchValue);
+        const catalogPage: CatalogPage = await mainPage.header.search(validData.searchValue);
 
-        expect(await catalogPage.getTitleText()).toBe(data.validSearchValue);
+        expect(await catalogPage.getTitleText()).toBe(validData.searchValue);
     });
 
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('With invalid symbols.', async function() {
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.invalidSearchValue);
+        const catalogPage: CatalogPage = await mainPage.header.search(invalidData.searchValue);
 
-        expect(await catalogPage.list.getEmpyContentText()).toBe(data.invalidSearchValue);
+        expect(await catalogPage.list.getEmpyContentText()).toBe(invalidData.productNotFoundText);
     });
     // Find the bug, infinity loading
 });

@@ -2,6 +2,7 @@
     "compilerOptions": {
         "skipLibCheck": true,
         "moduleResolution": "node",
+        "noImplicitAny": true,
         "types": [
             "node",
             "webdriverio/async",

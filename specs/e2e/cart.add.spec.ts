@@ -1,7 +1,9 @@
 import { MainPage, ProductPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { oneProduct, threeProducts, searchValue } from '../../data/cart.add.data';
+import { fromCatalogData } from '../../data/cartAdd/from.catalog';
+import { fromProductPageData } from '../../data/cartAdd/from.product.page';
+import { fewProductsData } from '../../data/cartAdd/few.products';
 
-let mainPage;
+let mainPage: MainPage;
 
 describe('Adding product to the cart', function ()  {
 
@@ -26,38 +28,38 @@ describe('Adding product to the cart', function ()  {
 
         const cartPage: CartPage = await CartPage.visit();
 
-        expect(await cartPage.list.getCounterInputValue()).toBe(oneProduct);
-        expect(await cartPage.header.getCartButtonCounterValue()).toBe(oneProduct);
+        expect(await cartPage.list.getCounterInputValue()).toBe(fromProductPageData.productAmount);
+        expect(await cartPage.header.getCartButtonCounterValue()).toBe(fromProductPageData.productAmount);
         expect(await cartPage.list.getProductTitleValue()).toBe(mainProductTitle);
         expect(await cartPage.list.getProductPrice()).toBe(mainProductPrice);
     });
 
     it('From catalog.', async function () {
 
-        const catalogPage: CatalogPage = await mainPage.header.search(searchValue);
+        const catalogPage: CatalogPage = await mainPage.header.search(fromCatalogData.searchValue);
 
         const catalogProductTitle: string = await catalogPage.list.getItemTitle();
         const catalogProductPrice: number = await catalogPage.list.getItemPrice();
 
-        await catalogPage.list.buyItems(oneProduct);
+        await catalogPage.list.buyItems(fromCatalogData.productAmount);
 
         const cartPage: CartPage = await CartPage.visit();
 
-        expect(await cartPage.list.getCounterInputValue()).toBe(oneProduct);
-        expect(await cartPage.header.getCartButtonCounterValue()).toBe(oneProduct);
+        expect(await cartPage.list.getCounterInputValue()).toBe(fromCatalogData.productAmount);
+        expect(await cartPage.header.getCartButtonCounterValue()).toBe(fromCatalogData.productAmount);
         expect(await cartPage.list.getProductTitleValue()).toBe(catalogProductTitle);
         expect(await cartPage.list.getProductPrice()).toBe(catalogProductPrice);
     });
 
     it('Adding a few products to the cart.', async function () {
 
-        const catalogPage: CatalogPage = await mainPage.header.search(searchValue);
+        const catalogPage: CatalogPage = await mainPage.header.search(fewProductsData.searchValue);
 
-        await catalogPage.list.buyItems(threeProducts);
+        await catalogPage.list.buyItems(fewProductsData.productAmount);
 
         const cartPage: CartPage = await CartPage.visit();
 
-        expect(await cartPage.list.getNumberOfProducts()).toBe(threeProducts);
+        expect(await cartPage.list.getNumberOfProducts()).toBe(fewProductsData.productAmount);
         expect(await cartPage.list.getProductPricesSum()).toBe(await cartPage.getTotalAmount());
     });
 

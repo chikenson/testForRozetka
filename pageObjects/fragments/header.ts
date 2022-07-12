@@ -34,9 +34,9 @@ export class Header {
     return Number(value);
   }
 
-  // cartCounterExisting() {
-  //   return this.cartButtonCounter.isExisting();
-  // }
+  cartCounterExisting() {
+    return this.cartButtonCounter.isExisting();
+  }
 
   async entryButtonClick(): Promise<EntryWindow> {
     await this.entryButton.click();
@@ -44,7 +44,7 @@ export class Header {
     return new EntryWindow();
   }
 
-  async search(value): Promise<CatalogPage>{
+  async search(value = " "): Promise<CatalogPage>{
     await this.searchInput.setValue(value);
     await this.searchButton.click();
 
