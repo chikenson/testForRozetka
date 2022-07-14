@@ -1,6 +1,5 @@
-import { emptyFieldsData } from '../../data/entry/empty.fields';
-import { validData } from '../../data/entry/valid.data';
-import { MainPage, EntryWindow } from '../../pageObjects/index';
+import { data } from '../data/entry/data';
+import { MainPage, EntryWindow } from '../pageObjects/index';
 
 let mainPage: MainPage;
 let entryWindow: EntryWindow;
@@ -18,14 +17,14 @@ describe('Registration', function ()  {
 
         await entryWindow.submitButtonClick();
 
-        expect(await entryWindow.getErrorMessageText()).toBe(emptyFieldsData.errorMessage);
+        expect(await entryWindow.getErrorMessageText()).toBe(data.emptyFieldrrorMessage);
     });
 
     it('With valid data.', async function () {
 
-        await entryWindow.signUp(validData.profile);
+        await entryWindow.signUp(data.profile);
 
-        expect(await entryWindow.getCaptchaText()).toBe(validData.captchaMessage);
+        expect(await entryWindow.getCaptchaText()).toBe(data.captchaMessage);
 
     });
 });

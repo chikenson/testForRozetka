@@ -1,7 +1,5 @@
-class FromCatalogData {
-    productAmount = 1;
+import { getDefaultCartAddData } from './../../helpers/dataHelpers';
 
-    searchValue = "Iphone";
-}
-
-export const fromCatalogData = new FromCatalogData();
+export default {
+    ...getDefaultCartAddData(),
+};

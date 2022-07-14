@@ -52,6 +52,17 @@ export const config: Options.Testrunner = {
     specs: [
         './specs/**/*.spec.ts'
     ],
+
+    suites: {
+        cartAdd: [
+            './specs/cartTest/add.few.products.spec.ts',
+            './specs/cartTest/add.from.catalog.spec.ts',
+            './specs/cartTest/add.from.product.page.spec.ts',
+        ],
+        // otherFeature: [
+        //     // ...
+        // ]
+    },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'

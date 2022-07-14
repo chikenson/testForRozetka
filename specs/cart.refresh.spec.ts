@@ -1,5 +1,5 @@
-import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { data } from '../../data/cartRefresh/cart.refresh.data';
+import { MainPage, CartPage, CatalogPage } from '../pageObjects/index';
+import { data } from '../data/cartRefresh/cart.refresh.data';
 
 let mainPage: MainPage;
 let cartPage: CartPage;
@@ -10,7 +10,7 @@ describe('Refresh cart', function ()  {
         mainPage = await MainPage.visit();
 
         const catalogPage: CatalogPage = await mainPage.header.search(data.searchValue);
-        await catalogPage.list.buyItems(data.productAmount);
+        await catalogPage.list.buyProducts(data.productAmount);
 
         cartPage = await CartPage.visit();
      });

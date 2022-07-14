@@ -1,5 +1,5 @@
-import { MainPage, CartPage, CatalogPage } from '../../pageObjects/index';
-import { data  } from '../../data/cartDelete/cart.delete.data';
+import { MainPage, CartPage, CatalogPage } from '../pageObjects/index';
+import { data  } from '../data/cartDelete/data';
 
 let mainPage: MainPage;
 let cartPage: CartPage;
@@ -9,8 +9,8 @@ describe('Delete from cart', function ()  {
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        const catalogPage: CatalogPage = await mainPage.header.search(data.searchValue);
-        await catalogPage.list.buyItems(data.productAmount);
+        const catalogPage: CatalogPage = await mainPage.header.search(data.productName);
+        await catalogPage.list.buyProducts(data.productAmount);
 
         cartPage = await CartPage.visit();
      });

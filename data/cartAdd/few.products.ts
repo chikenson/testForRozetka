@@ -1,7 +1,8 @@
-class FewProductsData {
-    productAmount = 3;
+import { getDefaultCartAddData } from './../../helpers/dataHelpers';
 
-    searchValue = "Iphone";
-}
+export default {
+    ...getDefaultCartAddData(),
 
-export const fewProductsData = new FewProductsData();
+    productAmount: 3,
+
+};
