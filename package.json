@@ -31,10 +31,11 @@
     "scripts": {
         "test": "wdio run wdio.conf.ts",
         "searchTest": "wdio run wdio.conf.ts --spec search.spec.ts",
-        "cartAddTest": "wdio run wdio.conf.ts --spec cart.add.spec.ts",
+        "cartAddTest": "wdio wdio.conf.ts --suite cartAdd",
         "cartDeleteTest": "wdio run wdio.conf.ts --spec cart.delete.spec.ts",
         "cartRefreshTest": "wdio run wdio.conf.ts --spec cart.refresh.spec.ts",
         "cartAmountTest": "wdio run wdio.conf.ts --spec cart.amount.spec.ts",
+        "entryTest": "wdio run wdio.conf.ts --spec entry.spec.ts",
         "lint": "eslint . --ext .ts .",
         "lint:fix": "eslint . --ext .ts . --fix",
         "compile": "tsc --outDir tmp"

@@ -10,7 +10,6 @@
    > npm run test
 
 4. You can start specific test file with commands:
-   >npm run cartTest
 
    >npm run cartAddTest
 
@@ -22,4 +21,19 @@
    
    >npm run searchTest
 
-   >npm run registrationTest
+   >npm run entryTest
+
+## Before start entryTest you need to add personal valid data to enter Rozetka
+
+# How to do it:
+
+### MacOS, Linux commands:
+
+> export USERNAME="Your mail"
+
+> export PASSWORD="Your password"
+
+### Windows commands:
+> set USERNAME="Your mail"
+
+> set PASSWORD="Your password"

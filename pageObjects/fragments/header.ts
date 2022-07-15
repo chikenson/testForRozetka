@@ -1,5 +1,7 @@
 import { Element } from '../../types';
 import { CatalogPage } from '../catalogPage/catalog.page';
+import { LoginModal } from './login.modal';
+import { MainPage } from './../main.page';
 
 export class Header {
 
@@ -23,8 +25,24 @@ export class Header {
     return $('button.search-form__submit');
   }
 
-  private get accountButton(): Element {
+  private get entryButton(): Element {
     return $('.header-actions__item--user');
+  }
+
+  private get languageOption(): Element {
+    return $('ul.lang-header');
+  }
+
+  async rusLanguageOn(): Promise<MainPage> {
+    await this.languageOption.$('[href="/"]').click();
+
+    return new MainPage();
+  }
+
+  async uaLanguageOn(): Promise<MainPage> {
+    await this.languageOption.$('[href="/ua/"]').click();
+
+    return new MainPage();
   }
 
   async getCartButtonCounterValue(): Promise <number>{
@@ -33,17 +51,17 @@ export class Header {
     return Number(value);
   }
 
-  cartCounterExisting() {
+  cartCounterExisting(): Promise<boolean> {
     return this.cartButtonCounter.isExisting();
   }
 
-  async accountButtonClick(): Promise<Header> {
-    await this.accountButton.click();
+  async entryButtonClick(): Promise<LoginModal> {
+    await this.entryButton.click();
 
-    return this;
+    return new LoginModal();
   }
 
-  async search(value): Promise<CatalogPage>{
+  async search(value = " "): Promise<CatalogPage>{
     await this.searchInput.setValue(value);
     await this.searchButton.click();
 

@@ -1,6 +1,5 @@
 import { ElementArray, Element } from '../../../types';
-import { normalizePrice } from '../../../helpers/helpers';
-import { CartPage } from '../cart.page';
+import { helpers } from '../../../helpers/helpers';
 
 export class CartList {
 
@@ -20,38 +19,33 @@ export class CartList {
         return $('[data-testid="title"]');
     }
 
-    private get kebabMenu(): Element{
-        return $('#cartProductActions0');
+    private get kebabMenu(): ElementArray{
+        return $$('.popup-menu__toggle');
     }
 
     private get deleteButton(): Element {
-        return this.kebabMenu.nextElement().$('button');
+        return $('.popup-menu__item button');
     }
 
-    private get notification() {
+    private get notification(): Element {
         return $('[data-testid="notification"]');
     }
 
-    async getNotificationText() {
+    async cleanCart() {
+        const arr = await this.kebabMenu;
+
+        for (const menu of arr) {
+            await menu.click();
+            await this.deleteButton.click();
+        }
+    }
+
+    async getNotificationText(): Promise<string> {
         return this.notification.getText();
     }
 
-    async setCounterInput(value) {
+    async setCounterInput(value: number): Promise<CartList> {
         await this.counterInput.setValue(value);
-    }
-
-    async kebabMenuIsDisplayed(): Promise<boolean> {
-        return await this.kebabMenu.isDisplayed();
-    }
-
-    async kebabMenuClick(): Promise<CartPage> {
-        await this.kebabMenu.click();
-
-        return new CartPage();
-    }
-
-    async deleteButtonClick(): Promise<CartList> {
-        await this.deleteButton.click();
 
         return this;
     }
@@ -65,7 +59,7 @@ export class CartList {
     async getProductPrice(): Promise<number> {
         const price: string = await this.productPrices[0].getText();
 
-        return normalizePrice(price);
+        return helpers.normalizePrice(price);
     }
 
     getProductTitleValue(): Promise<string> {
@@ -81,6 +75,6 @@ export class CartList {
 
         const strPrices = await this.productPrices.map((item) => item.getText());
 
-        return strPrices.reduce((previousValue, currentValue) => previousValue + normalizePrice(currentValue), initialValue);
+        return strPrices.reduce((previousValue, currentValue) => previousValue + helpers.normalizePrice(currentValue), initialValue);
     }
 }

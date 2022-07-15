@@ -2,12 +2,13 @@ import Page from './page';
 import { Header } from './fragments/header';
 import { Element } from '../types';
 import { ProductPage } from './product.page';
-import { normalizePrice } from '../helpers/helpers';
+import { helpers } from '../helpers/helpers';
 
 export class MainPage extends Page {
 
   static async visit (): Promise<MainPage> {
     await super.open('');
+
     return new MainPage();
   }
 
@@ -27,7 +28,8 @@ export class MainPage extends Page {
 
   async getDiscountBlockElementPrice(): Promise<number>{
     const price = await this.discountBlockElement.$('.tile__price-value').getText();
-    return normalizePrice(price);
+
+    return helpers.normalizePrice(price);
   }
 
   async discountBlockElementClick(): Promise<ProductPage> {
