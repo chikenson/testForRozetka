@@ -1,7 +1,5 @@
-class Data {
-    searchValue = "Samsung";
+export const data = {
+    productName: "Samsung",
 
-    productAmount = 1;
-}
-
-export const data = new Data();
+    productAmount: 1,
+};

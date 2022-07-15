@@ -1,8 +1,8 @@
 import { Element, Profile } from "../../types";
 import { MainPage } from "../main.page";
-import { RegistrationWindow } from "./registration.window";
+import { RegistationModal } from "./registration.modal";
 
-export class EntryWindow {
+export class LoginModal {
     private get registerButton(): Element {
         return $('button.auth-modal__register-link');
     }
@@ -27,26 +27,26 @@ export class EntryWindow {
         return $('#auth_pass');
     }
 
-    async setLoginValue(value: string): Promise<EntryWindow> {
+    async setLoginValue(value: string): Promise<LoginModal> {
         await this.loginInput.setValue(value);
 
-        return new EntryWindow();
+        return this;
     }
 
-    async setPasswordValue(value: string): Promise<EntryWindow> {
+    async setPasswordValue(value: string): Promise<LoginModal> {
         await this.passwordInput.setValue(value);
 
-        return new EntryWindow();
+        return this;
     }
 
     getErrorMessageText(): Promise<string> {
         return this.errorMessage.getText();
     }
 
-    async submitButtonClick(): Promise<EntryWindow> {
+    async submitButtonClick(): Promise<MainPage> {
         await this.submitButton.click();
 
-        return new EntryWindow();
+        return new MainPage();
     }
 
     async getCaptchaText(): Promise<string> {
@@ -55,13 +55,13 @@ export class EntryWindow {
         return this.captcha.getText();
     }
 
-    async registrationButtonClick(): Promise<RegistrationWindow> {
+    async registrationButtonClick(): Promise<RegistationModal> {
         await this.registerButton.click();
 
-        return new RegistrationWindow();
+        return new RegistationModal();
     }
 
-    async signUp({ mail,password }: Profile): Promise<MainPage> {
+    async signIn({ mail,password }: Profile): Promise<MainPage> {
         await this.setLoginValue(mail);
         await this.setPasswordValue(password);
         await this.submitButtonClick();

@@ -44,8 +44,10 @@ export class CartList {
         return this.notification.getText();
     }
 
-    async setCounterInput(value: number): Promise<void> {
+    async setCounterInput(value: number): Promise<CartList> {
         await this.counterInput.setValue(value);
+
+        return this;
     }
 
     async getCounterInputValue(): Promise<number> {

@@ -1,5 +1,5 @@
 export const data = {
-    productNotFoundText: "По заданным параметрам не найдена ни одна модель",
+    productNotFoundText: "За заданими параметрами не знайдено жодної моделі",
 
     invalidSearchValue: '=',
 

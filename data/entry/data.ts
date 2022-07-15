@@ -1,11 +1,10 @@
 export const data = {
-    emptyFieldrrorMessage: "Введен неверный адрес эл.почты или номер телефона",
+    emptyFieldrrorMessage: "Введено невірну адресу ел. пошти або номер телефону",
 
     profile: {
         mail: process.env.USERNAME,
         password: process.env.PASSWORD,
     },
 
-    captchaMessage: "Необходимо подтвердить, что вы не робот",
-
+    captchaMessage: "Необхідно підтвердити, що ви не робот",
 };

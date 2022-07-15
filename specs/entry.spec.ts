@@ -1,30 +1,28 @@
 import { data } from '../data/entry/data';
-import { MainPage, EntryWindow } from '../pageObjects/index';
+import { MainPage, LoginModal } from '../pageObjects/index';
 
 let mainPage: MainPage;
-let entryWindow: EntryWindow;
+let loginModal: LoginModal;
 
-describe('Registration', function ()  {
+describe('SignIn', function ()  {
 
     beforeEach(async function () {
         mainPage = await MainPage.visit();
 
-        entryWindow = await mainPage.header.entryButtonClick();
-
+        loginModal = await mainPage.header.entryButtonClick();
      });
 
     it('with empty fields.', async function () {
 
-        await entryWindow.submitButtonClick();
+        await loginModal.submitButtonClick();
 
-        expect(await entryWindow.getErrorMessageText()).toBe(data.emptyFieldrrorMessage);
+        expect(await loginModal.getErrorMessageText()).toBe(data.emptyFieldrrorMessage);
     });
 
     it('With valid data.', async function () {
 
-        await entryWindow.signUp(data.profile);
+        await loginModal.signIn(data.profile);
 
-        expect(await entryWindow.getCaptchaText()).toBe(data.captchaMessage);
-
+        expect(await loginModal.getCaptchaText()).toBe(data.captchaMessage);
     });
 });

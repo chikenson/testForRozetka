@@ -2,6 +2,6 @@ export function getDefaultCartAddData() {
     return {
         productAmount: 1,
 
-        productName: "Iphone",
+        productName: "Acer",
        };
 }

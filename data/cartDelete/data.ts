@@ -1,5 +1,5 @@
 export const data = {
-    emptyCartText: "Корзина пуста",
+    emptyCartText: "Кошик порожній",
 
     productName: "Samsung",
 

@@ -4,5 +4,4 @@ export default {
     ...getDefaultCartAddData(),
 
     productAmount: 3,
-
 };

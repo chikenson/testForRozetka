@@ -1,7 +1,7 @@
 import { Element, Profile } from "../../types";
 import { VerifyWindow } from "./verify.window";
 
-export class RegistrationWindow {
+export class RegistationModal {
 
     private get content() {
         return $('div.modal__content');
@@ -36,37 +36,37 @@ export class RegistrationWindow {
     }
 
     async getValidationMessages(): Promise<string[]> {
-        return await this.validationMessages.map((item) => item.getText());
+        return this.validationMessages.map((item) => item.getText());
     }
 
-    async setNameInput(name: string): Promise<RegistrationWindow> {
+    async setNameInput(name: string): Promise<RegistationModal> {
         await this.nameInput.setValue(name);
 
-        return new RegistrationWindow();
+        return this;
     }
 
-    async setSurNameInput(surName: string): Promise<RegistrationWindow> {
+    async setSurNameInput(surName: string): Promise<RegistationModal> {
         await this.surNameInput.setValue(surName);
 
-        return new RegistrationWindow();
+        return this;
     }
 
-    async setPhoneInput(phone: number): Promise<RegistrationWindow> {
+    async setPhoneInput(phone: number): Promise<RegistationModal> {
         await this.phoneInput.setValue(phone);
 
-        return new RegistrationWindow();
+        return this;
     }
 
-    async setMailInput(mail: string): Promise<RegistrationWindow> {
+    async setMailInput(mail: string): Promise<RegistationModal> {
         await this.mailInput.setValue(mail);
 
-        return new RegistrationWindow();
+        return this;
     }
 
-    async setPasswordInput(value: string): Promise<RegistrationWindow> {
+    async setPasswordInput(value: string): Promise<RegistationModal> {
         await this.passwordInput.setValue(value);
 
-        return new RegistrationWindow();
+        return this;
     }
 
     async submitButtonClick(): Promise<VerifyWindow> {
@@ -76,7 +76,7 @@ export class RegistrationWindow {
         return new VerifyWindow();
     }
 
-    async register({ name,surName,phone,mail,password }: Profile): Promise<this> {
+    async register({ name,surName,phone,mail,password }: Profile): Promise<VerifyWindow> {
         await this.setNameInput(name);
         await this.setSurNameInput(surName);
         await this.setPhoneInput(phone);
@@ -84,7 +84,7 @@ export class RegistrationWindow {
         await this.setPasswordInput(password);
         await this.submitButtonClick();
 
-        return this;
+        return new VerifyWindow();
     }
 
 }

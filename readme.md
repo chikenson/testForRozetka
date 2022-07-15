@@ -27,10 +27,13 @@
 
 # How to do it:
 
-Use commands:
+### MacOS, Linux commands:
 
 > export USERNAME="Your mail"
 
 > export PASSWORD="Your password"
 
-### In MacOs use "set" instead "export"
+### Windows commands:
+> set USERNAME="Your mail"
+
+> set PASSWORD="Your password"

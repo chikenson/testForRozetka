@@ -33,14 +33,17 @@ export class CartPage extends Page {
     return helpers.normalizePrice(totalAmount);
   }
 
-  async waitUntilTotalAmountChanges() {
+  async waitUntilTotalAmountChanges(): Promise<CartPage> {
     const currentTotalAmount = await this.getTotalAmount();
+
     await browser.waitUntil(async () => (await this.getTotalAmount()) !== currentTotalAmount,
             {
             timeout: 10000,
             timeoutMsg: 'expected sum to be different after 10s'
             }
         );
+
+        return this;
   }
 }
 

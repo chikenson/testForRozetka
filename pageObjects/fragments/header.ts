@@ -1,6 +1,7 @@
 import { Element } from '../../types';
 import { CatalogPage } from '../catalogPage/catalog.page';
-import { EntryWindow } from './entry.window';
+import { LoginModal } from './login.modal';
+import { MainPage } from './../main.page';
 
 export class Header {
 
@@ -28,20 +29,36 @@ export class Header {
     return $('.header-actions__item--user');
   }
 
+  private get languageOption(): Element {
+    return $('ul.lang-header');
+  }
+
+  async rusLanguageOn(): Promise<MainPage> {
+    await this.languageOption.$('[href="/"]').click();
+
+    return new MainPage();
+  }
+
+  async uaLanguageOn(): Promise<MainPage> {
+    await this.languageOption.$('[href="/ua/"]').click();
+
+    return new MainPage();
+  }
+
   async getCartButtonCounterValue(): Promise <number>{
     const value = await this.cartButtonCounter.getText();
 
     return Number(value);
   }
 
-  cartCounterExisting() {
+  cartCounterExisting(): Promise<boolean> {
     return this.cartButtonCounter.isExisting();
   }
 
-  async entryButtonClick(): Promise<EntryWindow> {
+  async entryButtonClick(): Promise<LoginModal> {
     await this.entryButton.click();
 
-    return new EntryWindow();
+    return new LoginModal();
   }
 
   async search(value = " "): Promise<CatalogPage>{
