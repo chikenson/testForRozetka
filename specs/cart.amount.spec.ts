@@ -25,7 +25,7 @@ describe('Change amount of product', function ()  {
 
     });
 
-    it('Valid value.', async function () {
+    it.only('Valid value.', async function () {
 
         const productPrice = await cartPage.list.getProductPrice();
 
