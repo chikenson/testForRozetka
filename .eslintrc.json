@@ -26,6 +26,9 @@
         "no-multiple-empty-lines":["error", { "max": 1}],
         "object-curly-spacing":["error", "always"],
         "no-console": "error",
-        "@typescript-eslint/semi": "error"
+        "@typescript-eslint/semi": "error",
+        "mocha/no-skipped-tests": "error",
+        "mocha/no-exclusive-tests": "error"
+        
     }
 }
