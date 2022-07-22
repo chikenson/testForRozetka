@@ -33,7 +33,7 @@
         "wdio-wait-for": "^2.2.6"
     },
     "scripts": {
-        "test": "wdio run wdio.conf.ts",
+        "test": "wdio run wdio.conf.ts && npm run report",
         "searchTest": "wdio run wdio.conf.ts --spec search.spec.ts",
         "cartAddTest": "wdio wdio.conf.ts --suite cartAdd",
         "cartDeleteTest": "wdio run wdio.conf.ts --spec cart.delete.spec.ts",
