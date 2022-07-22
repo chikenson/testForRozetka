@@ -9,7 +9,7 @@ on:
     
 jobs:
  
-  lint:
+  environment:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -17,9 +17,11 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
-      
+
+  lint:   
     - name: Run syntax test
       run: npm run lint
 
+  compile:
     - name: Run compile test
       run: npm run compile
