@@ -14,8 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3.4.1
+
     - name: Install Dependencies
       run: npm install
       
     - name: Run syntax test
       run: npm run lint
+
+    - name: Run compile test
+      run: npm run compile
