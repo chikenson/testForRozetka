@@ -22,7 +22,7 @@ export class Header {
   }
 
   private get searchButton(): Element {
-    return $('button.search-form__submit');
+    return $('form button.search-form__submit');
   }
 
   private get entryButton(): Element {

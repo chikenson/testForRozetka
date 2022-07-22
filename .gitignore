@@ -2,3 +2,5 @@ node_modules
 tmp
 playground.ts
 .vscode
+allure-report
+allure-results
