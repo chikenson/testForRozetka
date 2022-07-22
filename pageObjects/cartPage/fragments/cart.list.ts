@@ -20,11 +20,11 @@ export class CartList {
     }
 
     private get kebabMenu(): ElementArray{
-        return $$('.popup-menu__toggle');
+        return $$('[id*="cartProductActions"]');
     }
 
     private get deleteButton(): Element {
-        return $('.popup-menu__item button');
+        return $('rz-trash-icon button');
     }
 
     private get notification(): Element {
